@@ -29,8 +29,9 @@
     text-align: center;
 }
 
-.navlist {
+.list {
     list-style: none;
+    text-align: left;
 }
 
 .to-do-list {
@@ -38,7 +39,6 @@
     font-family: 'Dosis', sans-serif;
     font-size: 1em;
     margin: 40px;
-    /* width: 80%; */
 }
 
 .search-bar {
