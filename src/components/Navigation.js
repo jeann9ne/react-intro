@@ -1,10 +1,10 @@
 import React from "react"
 
-function Navigation(props){
+function Navigation(){
     return(
         <div className="navbar">
-        <img className="user-img" src={props.userInfo.avatar} alt="user"></img>
-        <p>{props.userInfo.name}</p>
+        <img className="user-img" src={this.state.userInfo.avatar} alt="user"></img>
+        <p>{this.state.userInfo.name}</p>
         <ul className="list">
            <li> <i className="fas fa-home"></i> Today</li>
           <li> <i className="fas fa-calendar"></i> Calendar

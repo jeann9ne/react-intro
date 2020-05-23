@@ -1,9 +1,9 @@
 import React from "react";
 
-function ToDoList(props) {
+function ToDoList() {
     return(
         <ul className="list">
-                {props.toDoList.map((toDoItem, index) => (<li key={index}>
+                {this.state.toDoList.map((toDoItem, index) => (<li key={index}>
                   <input type="checkbox" id="chkDone" value="thingOne" />
                   {toDoItem.title} </li>))}</ul>
     )
