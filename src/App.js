@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Navigation from "./components/Navigation";
 import Header from "./components/Header";
-import ToDoList from "./components/ToDoList"
+import ToDoList from "./components/ToDoList";
 import userImage from './userIcon.png';
 
 class App extends React.Component {
@@ -37,18 +37,18 @@ class App extends React.Component {
         avatar: userImage
       }
   }
-};
 
 render() {
   return (
     <div className="body">
-      <Navigation userInfo={userInfo}/>
+      <Navigation userInfo={this.state.userInfo}/>
      <div className="to-do-list">
       <Header title="Today" />
-      <ToDoList toDoList={toDoList}/>
+      <ToDoList toDoList={this.state.toDoList}/>
      </div>
     </div>
   );
 }
 
+};
 export default App;
