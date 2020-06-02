@@ -1,44 +1,97 @@
 import React from 'react';
 import './App.css';
+import Navigation from "./components/Navigation";
+import Header from "./components/Header";
+import ToDoList from "./components/ToDoList";
+import userImage from './userIcon.png';
 
 
-function App() {
+class App extends React.Component {
+  state= {
+    toDoList: [
+      {
+      id: 1,
+      title: "gotta do this",
+      description: "what exactly needs to get done.",
+      completed: false
+      },
+      {
+       id: 2,
+       title: "better do that",
+       description: "another thing that needs done",
+       completed: false
+      },
+      {
+        id: 3, 
+        title: "don't forget this",
+        description: "the thing I need to remember",
+        completed: false
+      },
+      {
+        id: 4,
+        title: "gotta do this",
+        description: "this is really important",
+        completed: false
+      }
+    ],
+      toDo: "",
+
+      userInfo: {
+        name: "Morpheus",
+        avatar: userImage
+      }
+  }
+
+  handleInputChange = (event) =>{
+    this.setState({toDo: event.target.value });
+  };
+
+  handleAddNewToDo = () =>{
+    let newToDoObj = {
+      title: this.state.toDo,
+    };
+    this.setState((state)=>({
+      toDoList: [...state.toDoList, newToDoObj],
+      toDo: "",
+    }));
+  };
+
+  handleChangeToDo = (id, completedTrue) => {
+    this.setState((state) => {
+    let newList = state.toDoList.map((item => {
+      if (item.id === id) {
+        return{...item, completed:completedTrue}
+        // return Object.assign({}, item, {completed: completedTrue});
+      } else {
+        return item;
+      }
+    }));
+    return {
+      list: newList
+    };
+    });
+
+  }
+
+render() {
   return (
-    <div className="App">
-  
-    <div class="navbar">
-      <ul>
-         <li>Today</li>
-        <li>Calendar
-          <ul>
-             <li>Weekly</li>
-             <li>Monthly</li>
-          </ul>
-        </li>
-        <li>Goals</li>
-        <li>Archive</li>
-        <li>Settings</li>
-      </ul>
-       <input type="text" placeholder="Search"></input>
-     </div>
-
-     <div class="to-do-list">
-       <h1>Today</h1>
-       <form action = ''>
-         <fieldset>
-          <input type = "checkbox"
-              id = "chkDone"
-              value = "thingOne" />
-              <p>Just an example</p>
-          <input type = "checkbox"
-              id = "chkDone"
-              value = "thingTwo" />
-              <p>Just an example</p>
-         </fieldset>
-       </form>
+    <div className="body">
+      <Navigation userInfo={this.state.userInfo}/>
+     <div className="to-do-list">
+      <Header title="Today" />
+      <div className="to-do-input">
+          <input 
+          type="text" 
+          value= {this.state.toDo} 
+          onChange={this.handleInputChange} >
+          </input>
+          <button onClick={this.handleAddNewToDo}>New Item</button>
+        </div>
+      <ToDoList toDoList={this.state.toDoList} />
      </div>
     </div>
   );
 }
 
+};
 export default App;
