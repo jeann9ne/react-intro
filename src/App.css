@@ -34,6 +34,17 @@
     text-align: left;
 }
 
+.list li input[type=checkbox]:checked ~ del {
+    text-decoration: line-through;
+}
+
+.to-do-input input{
+    grid-column-start: 2;
+    font-family: 'Dosis', sans-serif;
+    font-size: 1em;
+    margin: 40px;
+}
+
 .to-do-list {
     grid-column-start: 2;
     font-family: 'Dosis', sans-serif;

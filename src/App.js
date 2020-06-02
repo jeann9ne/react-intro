@@ -5,9 +5,11 @@ import Header from "./components/Header";
 import ToDoList from "./components/ToDoList";
 import userImage from './userIcon.png';
 
+
 class App extends React.Component {
   state= {
-    toDoList: [{
+    toDoList: [
+      {
       id: 1,
       title: "gotta do this",
       description: "what exactly needs to get done.",
@@ -30,12 +32,45 @@ class App extends React.Component {
         title: "gotta do this",
         description: "this is really important",
         completed: false
-      }],
-    
+      }
+    ],
+      toDo: "",
+
       userInfo: {
         name: "Morpheus",
         avatar: userImage
       }
+  }
+
+  handleInputChange = (event) =>{
+    this.setState({toDo: event.target.value });
+  };
+
+  handleAddNewToDo = () =>{
+    let newToDoObj = {
+      title: this.state.toDo,
+    };
+    this.setState((state)=>({
+      toDoList: [...state.toDoList, newToDoObj],
+      toDo: "",
+    }));
+  };
+
+  handleChangeToDo = (id, completedTrue) => {
+    this.setState((state) => {
+    let newList = state.toDoList.map((item => {
+      if (item.id === id) {
+        return{...item, completed:completedTrue}
+        // return Object.assign({}, item, {completed: completedTrue});
+      } else {
+        return item;
+      }
+    }));
+    return {
+      list: newList
+    };
+    });
+
   }
 
 render() {
@@ -44,7 +79,15 @@ render() {
       <Navigation userInfo={this.state.userInfo}/>
      <div className="to-do-list">
       <Header title="Today" />
-      <ToDoList toDoList={this.state.toDoList}/>
+      <div className="to-do-input">
+          <input 
+          type="text" 
+          value= {this.state.toDo} 
+          onChange={this.handleInputChange} >
+          </input>
+          <button onClick={this.handleAddNewToDo}>New Item</button>
+        </div>
+      <ToDoList toDoList={this.state.toDoList} />
      </div>
     </div>
   );
