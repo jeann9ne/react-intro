@@ -6,6 +6,7 @@ import ToDoList from "./components/ToDoList";
 import userImage from './userIcon.png';
 
 
+
 class App extends React.Component {
   state= {
     toDoList: [
@@ -56,22 +57,24 @@ class App extends React.Component {
     }));
   };
 
-  handleChangeToDo = (id, completedTrue) => {
-    this.setState((state) => {
-    let newList = state.toDoList.map((item => {
-      if (item.id === id) {
-        return{...item, completed:completedTrue}
-        // return Object.assign({}, item, {completed: completedTrue});
-      } else {
-        return item;
-      }
-    }));
-    return {
-      list: newList
-    };
+  handleChangeToDo = (toDo) => {
+    const {toDoList} = this.state;
+    const toDoIndex = toDoList.findIndex((t) => t.title === toDo.title);
+    toDo.completed = !toDo.completed;
+    toDoList.splice(toDoIndex, 1, toDo)
+    this.setState({
+      toDoList
+    // let newList = state.toDoList.map((item => {
+      // if (item.id === id) {
+      //   return{...item, completed:true}
+      //   // return Object.assign({}, item, {completed: completedTrue});
+      // } else {
+        // return item;
     });
+    // }));
+    
+    };
 
-  }
 
 render() {
   return (
@@ -87,7 +90,7 @@ render() {
           </input>
           <button onClick={this.handleAddNewToDo}>New Item</button>
         </div>
-      <ToDoList toDoList={this.state.toDoList} />
+      <ToDoList toDoList={this.handleChangeToDo} />
      </div>
     </div>
   );
