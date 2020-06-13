@@ -41,6 +41,41 @@
     margin: 40px;
 }
 
+.to-do-input input{
+    grid-column-start: 2;
+    font-family: 'Dosis', sans-serif;
+    font-size: 1em;
+    margin-left: 40px;
+}
+
+.App{
+    position: relative;
+    
+}
+
+
+.clock {
+    grid-column-start: 2;
+    font-family: 'Dosis', sans-serif;
+
+    box-shadow: goldenrod 50 50 50 50 ;
+    
+    font-size: 3em;
+    margin-left: 40px;
+
+    position: absolute;
+    top: 50%;
+    left: 30%;
+}
+
+.dash-welcome {
+    font-size: 4em;
+    font-family: 'Dosis', sans-serif;
+    position: absolute;
+    top: 40%;
+    left: 40%;
+}
+
 .search-bar {
     grid-column-start: 1;
     border-radius: 30px;

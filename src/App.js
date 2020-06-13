@@ -38,13 +38,54 @@ class App extends React.Component {
       }
   }
 
+  handleInputChange = (event) =>{
+    this.setState({toDo: event.target.value });
+  };
+
+  handleAddNewToDo = () =>{
+    let newToDoObj = {
+      title: this.state.toDo,
+    };
+    this.setState((state)=>({
+      toDoList: [...state.toDoList, newToDoObj],
+      toDo: "",
+    }));
+  };
+
+  handleChangeToDo = (id) => {
+    this.setState((state)=>{
+      const newList = state.toDoList.map((item) => {
+      if (item.id === id) {
+        return {...item, completed: item.completed === true ? false : true}
+
+      } else {
+        return item;
+      }
+    });
+    return {
+      toDoList: newList,
+    };
+  });
+};
+
 render() {
   return (
     <div className="body">
       <Navigation userInfo={this.state.userInfo}/>
      <div className="to-do-list">
       <Header title="Today" />
-      <ToDoList toDoList={this.state.toDoList}/>
+      <div className="to-do-input">
+          <input 
+          type="text" 
+          value= {this.state.toDo} 
+          onChange={this.handleInputChange} >
+          </input>
+          <button onClick={this.handleAddNewToDo}>New Item</button>
+        </div>
+      <ToDoList 
+      toDoList={this.state.toDoList}
+      handleChangeToDo={this.handleChangeToDo} />
+
      </div>
     </div>
   );
