@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import ToDoList from "./components/ToDoList";
 import userImage from './userIcon.png';
 
+const TODO_KEY = "list"
 class App extends React.Component {
   state= {
     toDoList: [{
@@ -37,6 +38,22 @@ class App extends React.Component {
         avatar: userImage
       }
   }
+
+componentDidMount() {
+   const toDoString = localStorage.getItem(TODO_KEY)
+   if (toDoString){
+     this.setState({toDoList: JSON.parse(toDoString) })
+   }
+  }
+  
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.toDoList !== this.state.toDoList){
+      localStorage.setItem(TODO_KEY, JSON.stringify(this.state.toDoList));
+
+    }
+  }
+
+  
 
   handleInputChange = (event) =>{
     this.setState({toDo: event.target.value });
