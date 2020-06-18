@@ -1,17 +1,25 @@
 import React from "react";
 import "./App.css";
 import Clock from "./components/clock/Clock";
+// import ToDoApp from "./components/ToDoApp";
+import {withRouter} from "react-router-dom";
 
-function App() {
+function Dashboard() {
     return (
-        <div classname="App">
+        <div className="App">
+    
         <h1 className="dash-welcome">Welcome</h1>
-        <div className="clock">
+        <div >
             <Clock />
+        </div> 
+        <div>
+         
         </div>
+    
         </div>
+       
     );
 }
 
-export default App;
+export default withRouter(Dashboard);
 

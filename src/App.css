@@ -23,10 +23,16 @@
     font-family: 'Dosis', sans-serif;
     font-size: 1em;
     background-color: var(--accent-main);
-    list-style: none;
-    width: 100%;
+    list-style: none; 
+    float: left;
+    height: 100%;
+    width: 100%; 
     padding: 10px;
     text-align: center;
+}
+
+.navlist li {
+    list-style: none;
 }
 
 .list {
@@ -58,8 +64,6 @@
     grid-column-start: 2;
     font-family: 'Dosis', sans-serif;
 
-    box-shadow: goldenrod 50 50 50 50 ;
-    
     font-size: 3em;
     margin-left: 40px;
 
@@ -72,8 +76,16 @@
     font-size: 4em;
     font-family: 'Dosis', sans-serif;
     position: absolute;
-    top: 40%;
+    top: 10%;
     left: 40%;
+}
+
+.Clock {
+    font-size: 1em;
+    font-family: 'Dosis', sans-serif;
+    position: absolute;
+    top: 45%;
+    left: 50%;
 }
 
 .search-bar {

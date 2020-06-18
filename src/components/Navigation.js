@@ -1,4 +1,6 @@
-import React from "react"
+import React from "react";
+import {NavLink} from "react-router-dom";
+
 
 function Navigation(props){
     return(
@@ -6,7 +8,18 @@ function Navigation(props){
         <img className="user-img" src={props.userInfo.avatar} alt="user"></img>
         <p>{props.userInfo.name}</p>
         <ul className="list">
-           <li> <i className="fas fa-home"></i> Today</li>
+           <NavLink exact to="/">
+             <li> 
+               <i className="fas fa-home"></i> 
+               Dashboard
+              </li>
+           </NavLink>
+           <NavLink to="/todoapp">
+               <li>
+                <i className="fas fa-sun"></i>
+                Today
+               </li>
+           </NavLink>
           <li> <i className="fas fa-calendar"></i> Calendar
             <ul className="navlist">
                <li> <i className="fas fa-calendar-week"></i> Weekly</li>
@@ -23,4 +36,4 @@ function Navigation(props){
 }
 
 
-export default Navigation
+export default Navigation;
