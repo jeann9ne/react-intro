@@ -1,35 +1,36 @@
 import React from 'react';
 // import './App.css';
-// import Navigation from "./Navigation";
 import Header from "./Header";
 import ToDoList from "./ToDoList";
-import {withRouter, Switch, Route} from "react-router-dom";
+import ToDoDetail from "./ToDoDetail";
+import {withRouter, Route, Switch} from "react-router-dom";
+import shortid from 'shortid';
 
-
+const id = shortid.generate();
 
 const TODO_KEY = "list"
 class ToDoApp extends React.Component {
   state= {
     toDoList: [{
-      id: 1,
+      id: id,
       title: "gotta do this",
       description: "what exactly needs to get done.",
       completed: false
       },
       {
-       id: 2,
+       id: id,
        title: "better do that",
        description: "another thing that needs done",
        completed: false
       },
       {
-        id: 3, 
+        id: id, 
         title: "don't forget this",
         description: "the thing I need to remember",
         completed: false
       },
       {
-        id: 4,
+        id: id,
         title: "gotta do this",
         description: "this is really important",
         completed: false
@@ -50,8 +51,6 @@ componentDidMount() {
 
     }
   }
-
-  
 
   handleInputChange = (event) =>{
     this.setState({toDo: event.target.value });
@@ -76,6 +75,8 @@ componentDidMount() {
       } else {
         return item;
       }
+
+    
     });
     return {
       toDoList: newList,
@@ -85,9 +86,12 @@ componentDidMount() {
 
 render() {
   return (
+    
     <Switch>
+      <Route path="/toDoList/:toDoId">
+        <ToDoDetail toDoList={this.state.toDoList} />
+      </Route>console.log(id)
     <div className="body">
-      
      <div className="to-do-list">
       <Header title="Today" />
       <div className="to-do-input">
@@ -97,14 +101,16 @@ render() {
           onChange={this.handleInputChange} >
           </input>
           <button onClick={this.handleAddNewToDo}>New Item</button>
-        
-        </div>
-        <Route path="/toDoList">
+         
+      </div>
+      <Route>  
+        <div>
           <ul>
-          <ToDoList />
-          </ul>
-          </Route>
-     </div>
+          <ToDoList toDoList={this.state.toDoList} handleChangeToDo={this.handleChangeToDo}/>
+          </ul>  
+        </div>
+        </Route>
+    </div>
     </div>
     </Switch>
   );

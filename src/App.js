@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Navigation from "./components/Navigation";
 import ToDoApp from "./components/ToDoApp";
-import Dashboard from "./Dashboard"
+import Dashboard from "./Dashboard";
 import {withRouter, Switch, Route} from "react-router-dom";
 import userImage from './userIcon.png';
 
@@ -20,10 +20,10 @@ render() {
     <div className="body">
         <Navigation userInfo={this.state.userInfo}/>
       <Switch>
-      <Route path="/toDoApp">
+      <Route path="/toDoList">
           <ToDoApp />
       </Route>
-      <Route path="/">
+      <Route exact path="/">
         <Dashboard />
       </Route>
     </Switch>

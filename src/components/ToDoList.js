@@ -1,33 +1,34 @@
 import React from "react";
-import ToDoDetail from "./ToDoDetail";
-import {Switch, Route, withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
+// import ToDoDetail from "./ToDoDetail";
 
 
 function ToDoList(props) {
     return(
-      <Switch>
-        <Route path="/toDoList/:toDoId">
-          <ToDoDetail toDoList={props.toDoList} />
-        </Route>
-        <Route path="/toDoList">
+           
         <ul className="list">
-                {props.toDoList.map((toDoItem, index) => (
+          
+                {props.toDoList.map((toDoList, index) => (
                 <li key={index}>
                   <input 
                     type="checkbox"
                     id="chkDone"
                     value="thingOne"
                     onChange={() => {
-                      props.handleChangeToDo(toDoItem.id)
+                      props.handleChangeToDo(toDoList.id)
                     }}
-                    defaultChecked={toDoItem.completed}>
-                </input>
-                  {toDoItem.title} 
+                    defaultChecked={toDoList.completed} >  
+                    </input>     
+                    <div
+                    className="to-do-item" 
+                    onClick={()=> props.history.push("/toDoList/" + toDoList.id)}>
+                      {toDoList.title} 
+                    </div>
+         
                   </li>
                   ))}
                   </ul>
-        </Route>
-      </Switch>
+          
     )
 }
 

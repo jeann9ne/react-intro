@@ -1,18 +1,48 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
+
 
 class ToDoDetail extends Component {
     state = {
-        toDoList: {},
+        toDoList: this.getToDoFromList(),
 
     };
+
+    handleChange=(event)=>{
+        const value = event.target.value;
+        const name = event.target.name;
+        this.setState({[name]:value});
+    }
+
+    componentDidUpdate(prevProps){
+        if (this.props !== prevProps){
+            this.setState ({ toDoList: this.getToDoFromList() });
+        }
+    }
+
+    getToDoFromList() {
+        const toDoId = parseInt(this.props.match.params.toDoId)
+        return this.props.toDoList.find(item=> item.id ===toDoId) || {};
+    };
+
     render() {
         return (
+         <div className="details-title">
+           <h3>{this.state.toDoList.title}</h3>
+             <h2>Details</h2>
             <div>
-                <h3>{this.statetoDoList.title}</h3>
-                <div>Details: ${this.state.toDoList.description}</div>
-                <p>{this.state.toDoList.completed}</p>
-                <Link className="detail-go-back-link" to="/todoapp">
+            <textarea
+            className="details-textarea"
+            value={this.state.toDoList.description} 
+            onChange={this.handleChange}
+            name="description" 
+            cols="70"
+            rows="10"
+            ></textarea>
+             <button className="details-submit">Submit</button>
+            </div>
+            <p>{this.state.toDoList.completed}</p>
+                <Link className="detail-go-back-link" to="/todolist">
                     Go Back
                 </Link>
             </div>
@@ -20,4 +50,4 @@ class ToDoDetail extends Component {
     }
 }
 
-export default ToDoDetail;
+export default withRouter(ToDoDetail);

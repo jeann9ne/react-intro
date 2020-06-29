@@ -14,7 +14,7 @@ function Navigation(props){
                Dashboard
               </li>
            </NavLink>
-           <NavLink to="/todoapp">
+           <NavLink to="/todolist">
                <li>
                 <i className="fas fa-sun"></i>
                 Today
