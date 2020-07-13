@@ -6,31 +6,29 @@ import ToDoDetail from "./ToDoDetail";
 import {withRouter, Route, Switch} from "react-router-dom";
 import shortid from 'shortid';
 
-const id = shortid.generate();
-
 const TODO_KEY = "list"
 class ToDoApp extends React.Component {
   state= {
     toDoList: [{
-      id: id,
+      id: shortid.generate(),
       title: "gotta do this",
       description: "what exactly needs to get done.",
       completed: false
       },
       {
-       id: id,
+       id: shortid.generate(),
        title: "better do that",
        description: "another thing that needs done",
        completed: false
       },
       {
-        id: id, 
+        id: shortid.generate(), 
         title: "don't forget this",
         description: "the thing I need to remember",
         completed: false
       },
       {
-        id: id,
+        id: shortid.generate(),
         title: "gotta do this",
         description: "this is really important",
         completed: false
@@ -76,7 +74,6 @@ componentDidMount() {
         return item;
       }
 
-    
     });
     return {
       toDoList: newList,
