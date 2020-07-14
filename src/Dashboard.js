@@ -8,7 +8,7 @@ function Dashboard() {
     return (
         <div className="App">
     
-        <h1 className="dash-welcome">Welcome</h1>
+        <h1 className={styles.dashWelcome}>Welcome</h1>
         <div >
             <Clock />
         </div> 
@@ -19,6 +19,16 @@ function Dashboard() {
         </div>
        
     );
+}
+
+const styles = {
+    dashWelcome: {
+        fontSize: "4em",
+        fontFamily: "'Dosis', sans-serif",
+        position: "absolute",
+        top: "10%",
+        left: "40%",
+    },
 }
 
 export default withRouter(Dashboard);

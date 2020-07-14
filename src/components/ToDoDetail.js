@@ -37,7 +37,7 @@ class ToDoDetail extends Component {
 
     render() {
         return (
-         <div className="details-title">
+         <div className={styles.detailsTitle}>
            <h3>{this.state.title}</h3>
              <h2>Details</h2>
             <div>
@@ -57,6 +57,18 @@ class ToDoDetail extends Component {
             </div>
         );
     }
+}
+
+const styles = {
+    detailsTitle: {
+        gridColumnStart: "1",
+        borderRadius: "30px",
+        marginLeft: "10px",
+        fontFamily: "'Dosis', sans-serif",
+        fontSize: "1em",
+    },
+
+
 }
 
 export default withRouter(ToDoDetail);

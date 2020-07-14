@@ -27,11 +27,21 @@ class Clock extends Component {
     }
     render () {
         return (
-            <div className="Clock">
+            <div className={styles.clock}>
             <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
             </div>
         );
     }
 }
+
+const styles = {
+    clock:{
+        fontSize: "1em",
+        fontFamily: "'Dosis', sans-serif",
+        position: "absolute",
+        top: "45%",
+        left: "50%",
+    },
+  }
 
 export default Clock;

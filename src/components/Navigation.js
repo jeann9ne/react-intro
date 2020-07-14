@@ -1,12 +1,16 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 
+
+
+
 function Navigation(props){
+
     return(
-        <div className="navbar">
-        <img className="user-img" src={props.userInfo.avatar} alt="user"></img>
+        <div style={styles.navbar}>
+        <img style={styles.userImg} src={props.userInfo.avatar} alt="user"></img>
         <p>{props.userInfo.name}</p>
-        <ul className="list">
+        <ul style={styles.list}>
            <NavLink exact to="/">
              <li> 
                <i className="fas fa-home"></i> 
@@ -29,10 +33,44 @@ function Navigation(props){
           <li> <i className="fas fa-archive"></i> Archive</li>
           <li> <i className="fas fa-cog"></i> Settings</li>
         </ul>
-         <input className="search-bar" type="text" placeholder="Search"></input>
+         <input className={styles.searchBar} type="text" placeholder="Search"></input>
        </div>
     )
 }
+
+const styles = {
+  navbar:{
+    gridColumnStart: "1",
+    fontFamily: "'Dosis', sans-serif",
+    fontSize: "1em",
+    backgroundColor: "var(--accent-main)",
+    listStyle: "none", 
+    float: "left",
+    height: "100%",
+    width: "100%", 
+    padding: "10px",
+    textAlign: "center",
+  },
+
+  userImg:{
+    borderRadius: "50%",
+    width: "90px",
+  },
+
+  list: {
+    listStyle: "none",
+    textAlign: "left",
+  },
+
+  searchBar: {
+    gridColumnStart: "1",
+    borderRadius: "30px",
+    marginLeft: "10px",
+  },
+}
+  
+  
+
 
 
 export default Navigation;
