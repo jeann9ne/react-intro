@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-// import ToDoDetail from "./ToDoDetail";
+import styled from "styled-components";
 
 
 function ToDoList(props) {
@@ -19,11 +19,10 @@ function ToDoList(props) {
                     }}
                     defaultChecked={toDoList.completed} >  
                     </input>     
-                    <div
-                    className="to-do-item" 
+                    <ToDoItem 
                     onClick={()=> props.history.push("/toDoList/" + toDoList.id)}>
                       {toDoList.title} 
-                    </div>
+                    </ToDoItem>
          
                   </li>
                   ))}
@@ -31,6 +30,10 @@ function ToDoList(props) {
           
     )
 }
+
+const ToDoItem = styled.div`
+border-radius: 50%;
+`;
 
 
 export default withRouter(ToDoList);

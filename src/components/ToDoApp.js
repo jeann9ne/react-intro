@@ -5,6 +5,7 @@ import ToDoList from "./ToDoList";
 import ToDoDetail from "./ToDoDetail";
 import {withRouter, Route, Switch} from "react-router-dom";
 import shortid from 'shortid';
+import styled from "styled-components";
 
 const TODO_KEY = "list"
 class ToDoApp extends React.Component {
@@ -89,9 +90,9 @@ render() {
         <ToDoDetail toDoList={this.state.toDoList} />
       </Route>console.log(id)
     <div className="body">
-     <div className="to-do-list">
+     <ToDoListStyle>
       <Header title="Today" />
-      <div className="to-do-input">
+      <ToDoInputStyle>
           <input 
           type="text" 
           value= {this.state.toDo} 
@@ -99,7 +100,7 @@ render() {
           </input>
           <button onClick={this.handleAddNewToDo}>New Item</button>
          
-      </div>
+      </ToDoInputStyle>
       <Route>  
         <div>
           <ul>
@@ -107,11 +108,25 @@ render() {
           </ul>  
         </div>
         </Route>
-    </div>
+    </ToDoListStyle>
     </div>
     </Switch>
   );
 }
 
 };
+
+const ToDoListStyle = styled.div`
+    grid-column-start: 2;
+    font-family: 'Dosis', sans-serif;
+    font-size: 1em;
+    margin: 40px;
+`
+
+const ToDoInputStyle = styled.div`
+  grid-column-start: 2;
+  font-family: 'Dosis', sans-serif;
+  font-size: 1em;
+  margin-left: 40px;
+`
 export default withRouter(ToDoApp);
